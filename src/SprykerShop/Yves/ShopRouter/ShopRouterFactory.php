@@ -47,9 +47,6 @@ class ShopRouterFactory extends AbstractFactory
         return new ParameterMerger();
     }
 
-    /**
-     * @return \SprykerShop\Yves\ShopRouter\Dependency\Client\ShopRouterToUrlStorageClientInterface
-     */
     public function getUrlMatcher(): ShopRouterToUrlStorageClientInterface
     {
         return $this->getProvidedDependency(ShopRouterDependencyProvider::CLIENT_URL_STORAGE);

@@ -38,9 +38,6 @@ class SilexRouter extends AbstractPlugin implements RouterInterface
         $this->sharedSilexRouter->setContext($context);
     }
 
-    /**
-     * @return \Symfony\Component\Routing\RequestContext
-     */
     public function getContext(): RequestContext
     {
         return $this->sharedSilexRouter->getContext();
@@ -68,11 +65,6 @@ class SilexRouter extends AbstractPlugin implements RouterInterface
         return $generator->generate($name, $parameters, $referenceType);
     }
 
-    /**
-     * @param string $pathinfo
-     *
-     * @return array
-     */
     public function match(string $pathinfo): array
     {
         return $this->sharedSilexRouter->match($pathinfo);
