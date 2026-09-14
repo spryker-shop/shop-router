@@ -9,6 +9,7 @@ namespace SprykerShop\Yves\ShopRouter\Plugin\Router;
 
 use Spryker\Yves\Kernel\AbstractPlugin;
 use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -28,12 +29,7 @@ class SilexRouter extends AbstractPlugin implements RouterInterface
         $this->sharedSilexRouter = $this->getFactory()->createSharedSilexRouter();
     }
 
-    /**
-     * @param \Symfony\Component\Routing\RequestContext $context
-     *
-     * @return void
-     */
-    public function setContext(RequestContext $context)
+    public function setContext(RequestContext $context): void
     {
         $this->sharedSilexRouter->setContext($context);
     }
@@ -43,10 +39,7 @@ class SilexRouter extends AbstractPlugin implements RouterInterface
         return $this->sharedSilexRouter->getContext();
     }
 
-    /**
-     * @return \Symfony\Component\Routing\RouteCollection
-     */
-    public function getRouteCollection()
+    public function getRouteCollection(): RouteCollection
     {
         return $this->sharedSilexRouter->getRouteCollection();
     }
