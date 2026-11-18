@@ -103,10 +103,7 @@ abstract class AbstractRouter extends AbstractPlugin implements RouterInterface
         $url = $pathInfo;
         $scheme = $this->context->getScheme();
 
-        if (
-            $referenceType !== static::NETWORK_PATH &&
-            ($scheme === 'http' && $this->sslEnabled === true || $scheme === 'https' && $this->sslEnabled === false)
-        ) {
+        if ($this->isSchemeMismatch($referenceType, $scheme)) {
             $referenceType = static::ABSOLUTE_URL;
         }
 
@@ -127,6 +124,21 @@ abstract class AbstractRouter extends AbstractPlugin implements RouterInterface
         }
 
         return $url;
+    }
+
+    /**
+     * @param string|int $referenceType
+     * @param string $scheme
+     *
+     * @return bool
+     */
+    protected function isSchemeMismatch($referenceType, string $scheme): bool
+    {
+        if ($referenceType === static::NETWORK_PATH) {
+            return false;
+        }
+
+        return ($scheme === 'http' && $this->sslEnabled === true) || ($scheme === 'https' && $this->sslEnabled === false);
     }
 
     /**
